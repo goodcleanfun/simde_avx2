@@ -77,7 +77,7 @@ jobs:
 
       - name: Update clib.json
         run: |
-          FILES_CSV=$(echo "${{ steps.generate_files.outputs.file_list }}" | sed -E 's/[^ ]+\///g' | sed -E 's/[[:space:]]/","/g')
+          FILES_CSV=$(echo "${{ steps.generate_files.outputs.file_list }}" | sed -E 's/[^ ]+\///g' | sed -E 's/ /","/g')
           jq ".src = [\"$FILES_CSV\"]" clib.json > clib.json.tmp
           mv clib.json.tmp clib.json
           jq ".version = \"${{ needs.check_version.outputs.latest_release }}\"" clib.json > clib.json.tmp
