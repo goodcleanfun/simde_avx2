@@ -30,13 +30,17 @@ jobs:
       - name: Generate list of .h files
         id: generate_files
         run: |
-          FILE_LIST=$(python3 simde_headers/simde_headers.py simde-repo x86/avx2.h | sort | tr '\n' ',' | sed 's/,$//')
+          FILE_LIST=$(python3 simde_headers/simde_headers.py simde-repo x86/avx2.h | sort | tr '\n' ' ' | sed 's/[ ]+$//g')
           echo "::set-output name=file_list::$FILE_LIST"
+    
+      - name: Copy header files
+        run: |
+          python3 simde_headers/simde_rewrite_includes.py simde_avx2 simde-repo $(echo "${{ steps.generate_files.outputs.file_list }}") --out-dir=.
 
       - name: Update clib.json
         run: |
-          FILES=$(echo "${{ steps.generate_files.outputs.file_list }}" | sed 's/,/","/g')
-          jq ".src = [\"$FILES\"]" clib.json > clib.json.tmp
+          FILES_CSV=$(echo "${{ steps.generate_files.outputs.file_list }}" | sed -E 's/[^ ]+\///g' | sed -E 's/[[:space:]]/","/g')
+          jq ".src = [\"$FILES_CSV\"]" clib.json > clib.json.tmp
           mv clib.json.tmp clib.json
 
       - name: Check for changes
@@ -44,9 +48,8 @@ jobs:
           git config user.name "Automated"
           git config user.email "actions@users.noreply.github.com"
           if [ "$(git diff --name-only HEAD)" ]; then
-            git add clib.json
             timestamp=$(date -u)
-            git commit -m "Update clib.json with latest SIMDe headers [${timestamp}]" || exit 0
+            git commit -a -m "Update clib.json with latest SIMDe headers [${timestamp}]" || exit 0
             git push
           else
             echo "No changes to commit."

@@ -1,7 +1,7 @@
 {
-  "name": "simde",
-  "version": "master",
-  "repo": "simd-everywhere/simde-no-tests",
+  "name": "simde_avx2",
+  "version": "main",
+  "repo": "goodcleanfun/simde_avx2",
   "description": "A clib pointer to SIMDe including AVX2 instructions only",
   "keywords": [
     "simde",
@@ -22,14 +22,14 @@
     "simde-f16.h",
     "simde-features.h",
     "simde-math.h",
-    "x86/avx.h",
-    "x86/avx2.h",
-    "x86/mmx.h",
-    "x86/sse.h",
-    "x86/sse2.h",
-    "x86/sse3.h",
-    "x86/sse4.1.h",
-    "x86/sse4.2.h",
-    "x86/ssse3.h"
+    "avx.h",
+    "avx2.h",
+    "mmx.h",
+    "sse.h",
+    "sse2.h",
+    "sse3.h",
+    "sse4.1.h",
+    "sse4.2.h",
+    "ssse3.h"
   ]
 }
