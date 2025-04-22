@@ -1,6 +1,6 @@
 {
   "name": "simde_avx2",
-  "version": "main",
+  "version": "v0.8.2",
   "repo": "goodcleanfun/simde_avx2",
   "description": "A clib pointer to SIMDe including AVX2 instructions only",
   "keywords": [
@@ -15,6 +15,7 @@
   },
   "src": [
     "check.h",
+    "debug-trap.h",
     "hedley.h",
     "simde-align.h",
     "simde-arch.h",
@@ -33,6 +34,7 @@
     "sse3.h",
     "sse4.1.h",
     "sse4.2.h",
-    "ssse3.h"
+    "ssse3.h",
+    ""
   ]
 }
