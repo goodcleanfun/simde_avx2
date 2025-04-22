@@ -1,6 +1,6 @@
 {
   "name": "simde_avx2",
-  "version": "v0.8.2",
+  "version": "main",
   "repo": "goodcleanfun/simde_avx2",
   "description": "A clib pointer to SIMDe including AVX2 instructions only",
   "keywords": [
