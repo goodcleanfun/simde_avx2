@@ -84,15 +84,26 @@ jobs:
           mv clib.json.tmp clib.json
 
       - name: Check for changes
+        id: check_changes
         run: |
           git config user.name "Automated"
           git config user.email "actions@users.noreply.github.com"
           if [ "$(git diff --name-only HEAD)" ]; then
             timestamp=$(date -u)
+            git add clib.json *.h
             git commit -a -m "Update clib.json with latest SIMDe headers [${timestamp}]" || exit 0
             git tag -a "${{ needs.check_version.outputs.latest_release }}" -m "Release ${{ needs.check_version.outputs.latest_release }}"
             git push
             git push --tags
+            echo "created_release=true" >> $GITHUB_OUTPUT
           else
             echo "No changes to commit."
+            echo "created_release=false" >> $GITHUB_OUTPUT
           fi
+
+      - name: Create release
+        if: steps.check_changes.outputs.created_release == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create "${{ needs.check_version.outputs.latest_release }}" --generate-notes
