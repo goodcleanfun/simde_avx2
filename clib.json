@@ -10,6 +10,9 @@
     "avx2"
   ],
   "license": "MIT",
+  "development": {
+    "silentbicycle/greatest": "*"
+  },
   "src": [
     "check.h",
     "hedley.h",
