@@ -139,7 +139,9 @@ TEST test_avx2 (void) {
     for (size_t i = 0 ; i < (sizeof(test_vec) / sizeof(test_vec[0])); i++) {
         simde__m256i r = simde_mm256_abs_epi8(test_vec[i].a);
         for (int j = 0; j < (sizeof(r) / sizeof(int8_t)); j++) {
-            ASSERT_EQ(r[j], test_vec[i].r[j]);
+            int8_t a = ((int8_t*)&r)[j];
+            int8_t b = ((int8_t*)&test_vec[i].r)[j];
+            ASSERT_EQ(a, b);
         }
     }
     PASS();
