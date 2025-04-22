@@ -58,7 +58,7 @@
 #    endif
 #  endif
 
-#  include "debug-trap.h"
+#include "debug-trap.h"
 
    HEDLEY_DIAGNOSTIC_PUSH
    SIMDE_DIAGNOSTIC_DISABLE_VARIADIC_MACROS_
