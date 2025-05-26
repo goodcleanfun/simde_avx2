@@ -145,6 +145,7 @@ TEST test_avx2 (void) {
         }
     }
     PASS();
+
 }
 
 SUITE(avx2_suite) {
