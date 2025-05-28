@@ -521,39 +521,39 @@ TEST test_simde_mm256_srli_epi16(void) {
         simde__m256i r;
         r = simde_mm256_srli_epi16(test_vec[i].a, 0);
         for (size_t j = 0; j < 16; j++) {
-            ASSERT_EQ(r[j], test_vec[i].a[j]);
+            ASSERT_EQ(((int16_t *)&r)[j], ((int16_t *)&test_vec[i].a)[j]);
         }
         r = simde_mm256_srli_epi16(test_vec[i].a, 1);
         for (size_t j = 0; j < 16; j++) {
-            ASSERT_EQ(r[j], test_vec[i].r1[j]);
+            ASSERT_EQ(((int16_t *)&r)[j], ((int16_t *)&test_vec[i].r1)[j]);
         }
         r = simde_mm256_srli_epi16(test_vec[i].a, 3);
         for (size_t j = 0; j < 16; j++) {
-            ASSERT_EQ(r[j], test_vec[i].r3[j]);
+            ASSERT_EQ(((int16_t *)&r)[j], ((int16_t *)&test_vec[i].r3)[j]);
         }
         r = simde_mm256_srli_epi16(test_vec[i].a, 5);
         for (size_t j = 0; j < 16; j++) {
-            ASSERT_EQ(r[j], test_vec[i].r5[j]);
+            ASSERT_EQ(((int16_t *)&r)[j], ((int16_t *)&test_vec[i].r5)[j]);
         }
         r = simde_mm256_srli_epi16(test_vec[i].a, 11);
         for (size_t j = 0; j < 16; j++) {
-            ASSERT_EQ(r[j], test_vec[i].r11[j]);
+            ASSERT_EQ(((int16_t *)&r)[j], ((int16_t *)&test_vec[i].r11)[j]);
         }
         r = simde_mm256_srli_epi16(test_vec[i].a, 13);
         for (size_t j = 0; j < 16; j++) {
-            ASSERT_EQ(r[j], test_vec[i].r13[j]);
+            ASSERT_EQ(((int16_t *)&r)[j], ((int16_t *)&test_vec[i].r13)[j]);
         }
         r = simde_mm256_srli_epi16(test_vec[i].a, 15);
         for (size_t j = 0; j < 16; j++) {
-            ASSERT_EQ(r[j], test_vec[i].r15[j]);
+            ASSERT_EQ(((int16_t *)&r)[j], ((int16_t *)&test_vec[i].r15)[j]);
         }
         r = simde_mm256_srli_epi16(test_vec[i].a, 16);
         for (size_t j = 0; j < 16; j++) {
-            ASSERT_EQ(r[j], test_vec[i].r16[j]);
+            ASSERT_EQ(((int16_t *)&r)[j], ((int16_t *)&test_vec[i].r16)[j]);
         }
         r = simde_mm256_srli_epi16(test_vec[i].a, 24);
         for (size_t j = 0; j < 16; j++) {
-            ASSERT_EQ(r[j], test_vec[i].r24[j]);
+            ASSERT_EQ(((int16_t *)&r)[j], ((int16_t *)&test_vec[i].r24)[j]);
         }
     }
 
